@@ -16,30 +16,29 @@ import com.google.common.base.Optional;
 
 @Path("/hello-world")
 public class HelloWorldResource {
-	private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldResource.class);
 
-	private final String template;
-	private final String defaultName;
-	private final AtomicLong counter;
+    private final String template;
+    private final String defaultName;
+    private final AtomicLong counter;
 
-	public HelloWorldResource(String template, String defaultName) {
-		this.template = template;
-		this.defaultName = defaultName;
-		this.counter = new AtomicLong();
-	}
+    public HelloWorldResource(String template, String defaultName) {
+        this.template = template;
+        this.defaultName = defaultName;
+        this.counter = new AtomicLong();
+    }
 
-	@GET
-	@Timed
-	@Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-	public Saying sayHelloXml(@QueryParam("name") Optional<String> name) {
-		return new Saying(counter.incrementAndGet(), String.format(template, name.or(defaultName)));
-	}
+    @GET
+    @Timed
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Saying sayHelloXml(@QueryParam("name") Optional<String> name) {
+        return new Saying(counter.incrementAndGet(), String.format(template, name.or(defaultName)));
+    }
 
-	@GET
-	@Timed
-	@Path("simple")
-	@Produces(MediaType.TEXT_PLAIN)
-	public String sayHello2(@QueryParam("name") Optional<String> name) {
-		return String.format(template, name.or(defaultName));
-	}
+    @GET
+    @Timed
+    @Path("simple")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String sayHello2(@QueryParam("name") Optional<String> name) {
+        return String.format(template, name.or(defaultName));
+    }
 }
