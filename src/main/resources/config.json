@@ -1,0 +1,25 @@
+{
+  "template": "Hello, %s!",
+  "defaultName": "Stranger",
+
+  # Logging settings
+  "logging": {
+    # The default level of all loggers. Can be OFF, ERROR, WARN, INFO, DEBUG, TRACE, or ALL.
+    level: INFO
+  },
+
+  "server": {
+    "applicationConnectors": [
+      {
+        "type": "http",
+        "port": 54000
+      }
+    ],
+    "adminConnectors": [
+      {
+        "type": "http",
+        "port": 54001
+      }
+    ]
+  }
+}
